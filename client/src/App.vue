@@ -1,15 +1,20 @@
 <template>
   <div class="dashboard">
     <Header />
+    <main>
+      <Toolbar />
+    </main>
   </div>
 </template>
 
 <script>
 import Header from '@/components/Header';
+import Toolbar from '@/components/Toolbar';
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Toolbar
   }
 }
 </script>
