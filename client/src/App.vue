@@ -3,6 +3,7 @@
     <Header />
     <main>
       <Toolbar />
+      <Team />
     </main>
   </div>
 </template>
@@ -10,11 +11,13 @@
 <script>
 import Header from '@/components/Header';
 import Toolbar from '@/components/Toolbar';
+import Team from '@/components/Team';
 export default {
   name: 'App',
   components: {
     Header,
-    Toolbar
+    Toolbar,
+    Team
   }
 }
 </script>
