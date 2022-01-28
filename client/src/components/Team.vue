@@ -1,44 +1,14 @@
 <template>
   <div class="team">
-      <div class="team-members table">
+      <div class="team-members table" v-if="users.length > 0">
           <div class="table-header table-row">
               <div class="table-col">Name</div>
               <div class="table-col">Email</div>
               <div class="table-col table-actions">Actions</div>
           </div>
-          <div class="member table-row">
-              <div class="table-col name">Mike Tyson</div>
-              <div class="table-col email">iron_mike@gmail.com</div>
-              <div class="table-col actions">
-                  <div class="button-group group-end">
-                      <button class="button button-small">Update</button>
-                      <button class="button button-small button-alert">Delete</button>
-                  </div>
-              </div>
-          </div>
-          <div class="member table-row">
-              <div class="table-col name">Tony Montana</div>
-              <div class="table-col email">antonio_monti@gmail.com</div>
-              <div class="table-col actions">
-                  <div class="button-group group-end">
-                      <button class="button button-small">Update</button>
-                      <button class="button button-small button-alert">Delete</button>
-                  </div>
-              </div>
-          </div>
-          <div class="member table-row">
-              <div class="table-col name">Rambo</div>
-              <div class="table-col email">rambambo@gmail.com</div>
-              <div class="table-col actions">
-                  <div class="button-group group-end">
-                      <button class="button button-small">Update</button>
-                      <button class="button button-small button-alert">Delete</button>
-                  </div>
-              </div>
-          </div>
-          <div class="member table-row">
-              <div class="table-col name">King Kong</div>
-              <div class="table-col email">king-kong@gmail.com</div>
+          <div class="member table-row" v-for="user in users" :key="user.id">
+              <div class="table-col name">{{ user.name }}</div>
+              <div class="table-col email">{{ user.email }}</div>
               <div class="table-col actions">
                   <div class="button-group group-end">
                       <button class="button button-small">Update</button>
@@ -47,12 +17,15 @@
               </div>
           </div>
       </div>
+      <div class="no-team" v-else>
+          <p>No team available</p>
+      </div>
   </div>
 </template>
 
 <script>
 export default {
-
+    props: ["users"]
 }
 </script>
 

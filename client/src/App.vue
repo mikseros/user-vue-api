@@ -3,21 +3,40 @@
     <Header />
     <main>
       <Toolbar />
-      <Team />
+      <Team :users="users" />
     </main>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+import APIController from '@/controllers/api';
+
 import Header from '@/components/Header';
 import Toolbar from '@/components/Toolbar';
 import Team from '@/components/Team';
+
 export default {
   name: 'App',
   components: {
     Header,
     Toolbar,
     Team
+  },
+  setup () {
+    const users = ref([]);
+
+    const fetchUsers = async () => {
+      users.value = await APIController.FetchUsers();
+    }
+
+    return {
+      users,
+      fetchUsers
+    }
+  },
+  mounted () {
+    this.fetchUsers();
   }
 }
 </script>
