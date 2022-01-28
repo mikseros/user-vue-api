@@ -4,7 +4,7 @@
     <main>
       <Toolbar :toggleForm="toggleForm" />
       <Team :users="users" />
-      <UserForm v-if="formActive" :toggleForm="toggleForm" />
+      <UserForm v-if="formActive" :toggleForm="toggleForm" :fetchUsers="fetchUsers" :userId="userId" />
     </main>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
   setup () {
     const users = ref([]);
     const formActive = ref(false);
+    const userId = ref(false);
 
     const fetchUsers = async () => {
       users.value = await APIController.FetchUsers();
@@ -36,15 +37,19 @@ export default {
 
     const toggleForm = (id = false) => {
       formActive.value = !formActive.value;
+      userId.value = false;
 
-      console.log(id);
+      if (id) {
+        userId.value = id;
+      }
     }
 
     return {
       users,
       fetchUsers,
       formActive,
-      toggleForm
+      toggleForm,
+      userId
     }
   },
   mounted () {
