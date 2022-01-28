@@ -11,7 +11,7 @@
               <div class="table-col email">{{ user.email }}</div>
               <div class="table-col actions">
                   <div class="button-group group-end">
-                      <button class="button button-small">Update</button>
+                      <button class="button button-small" @click="() => toggleForm(user.id)">Update</button>
                       <button class="button button-small button-alert">Delete</button>
                   </div>
               </div>
@@ -24,8 +24,10 @@
 </template>
 
 <script>
+// import APIController from '@/controllers/api';
+
 export default {
-    props: ["users"]
+    props: ["users", "fetchUsers", "toggleForm"]
 }
 </script>
 

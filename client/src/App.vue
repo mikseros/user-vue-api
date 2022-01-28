@@ -3,7 +3,7 @@
     <Header />
     <main>
       <Toolbar :toggleForm="toggleForm" />
-      <Team :users="users" />
+      <Team :users="users" :toggleForm="toggleForm" :fetchUsers="fetchUsers" />
       <UserForm v-if="formActive" :toggleForm="toggleForm" :fetchUsers="fetchUsers" :userId="userId" />
     </main>
   </div>
