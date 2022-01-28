@@ -2,8 +2,9 @@
   <div class="dashboard">
     <Header />
     <main>
-      <Toolbar />
+      <Toolbar :toggleForm="toggleForm" />
       <Team :users="users" />
+      <UserForm v-if="formActive" :toggleForm="toggleForm" />
     </main>
   </div>
 </template>
@@ -15,24 +16,35 @@ import APIController from '@/controllers/api';
 import Header from '@/components/Header';
 import Toolbar from '@/components/Toolbar';
 import Team from '@/components/Team';
+import UserForm from '@/components/UserForm';
 
 export default {
   name: 'App',
   components: {
     Header,
     Toolbar,
-    Team
+    Team,
+    UserForm
   },
   setup () {
     const users = ref([]);
+    const formActive = ref(false);
 
     const fetchUsers = async () => {
       users.value = await APIController.FetchUsers();
     }
 
+    const toggleForm = (id = false) => {
+      formActive.value = !formActive.value;
+
+      console.log(id);
+    }
+
     return {
       users,
-      fetchUsers
+      fetchUsers,
+      formActive,
+      toggleForm
     }
   },
   mounted () {
